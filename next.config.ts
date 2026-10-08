@@ -1,7 +1,13 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  async redirects() {
+    return ["png-to-jpg", "jpg-to-png", "webp-to-png"].map((slug) => ({
+      source: `/tools/${slug}`,
+      destination: "/tools/image-converter",
+      permanent: true,
+    }));
+  },
 };
 
 export default nextConfig;

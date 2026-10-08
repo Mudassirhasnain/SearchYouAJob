@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import AuthModal from "@/components/AuthModal";
 import ThemeToggle from "@/components/ThemeToggle";
@@ -47,6 +48,12 @@ export default function AuthButton({ onOpenSidebar }: Props) {
 
         <div className="flex items-center gap-3">
           <ThemeToggle />
+          <Link
+            href="/tools"
+            className="rounded-full border border-zinc-200 bg-white px-4 py-2 text-sm font-medium text-zinc-700 shadow-sm hover:bg-zinc-50"
+          >
+            Job Tools
+          </Link>
           <button
             onClick={handleClick}
             className="rounded-full border border-zinc-200 bg-white px-4 py-2 text-sm font-medium text-zinc-700 shadow-sm hover:bg-zinc-50"

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://searchyouajob.vercel.app"),
 
   title: {
-    default: "SearchYouAJob — AI Job Search Assistant",
+    default: "SearchYourJob: AI Job Search in One Chat",
     template: "%s | SearchYouAJob",
   },
 
@@ -32,19 +32,19 @@ export const metadata: Metadata = {
     "automatic job applier",
     "jobs in canada",
     "jobs in america",
-    "online tools",
-    "cv maker",
-    "resume maker",
-    "online cv maker",
-    "online resume builder",
-    "ats resume builder",
-    "jpg to png converter",
-    "pdf reader online",
-    "pdf maker online",
-    "png to pdf converter online",
-    "free resume builder online",
-    "free cv maker online",
-    "free pdf reader",
+    "ai powered job search",
+    "search jobs online",
+    "unemployement",
+    "jobs",
+    "online job search",
+    "remote jobs in us",
+    "online job search tool",
+    "search jobs",
+    "jobs research",
+    "will ai take our jobs",
+    "ai jobs",
+    "cs jobs",
+    "how to search for jobs",
   ],
 
   alternates: {
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
   },
 
   openGraph: {
-    title: "SearchYouAJob — AI Job Search Assistant",
+    title: "SearchYourJob: AI Job Search in One Chat",
     description:
       "Find relevant jobs with an AI-powered conversational job search assistant.",
     url: "https://searchyouajob.vercel.app/",

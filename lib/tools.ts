@@ -28,10 +28,10 @@ export const TOOLS: Tool[] = [
     short: "Fill in a form, get a clean one-page resume as PDF or Word.",
     category: "Resume and CV",
     kind: "resume",
-    title: "Free Resume Maker for Job Applications",
+    title: "Free Online Resume Maker",
     description:
       "Build a clean, ATS-friendly resume in your browser. Fill in the form, check the live preview, then save it as a PDF or Word file. No sign-up.",
-    keywords: ["resume maker", "free resume builder", "ATS friendly resume", "resume template", "make a resume online"],
+    keywords: ["resume maker", "free resume builder", "ATS friendly resume", "resume template", "make a resume online", "online resume maker", "resume builder online", "free resume builder online"],
     intro: [
       "Plenty of good candidates lose out because their resume is hard to read, either for a recruiter skimming it in thirty seconds or for the software that sorts applications first. This resume maker uses a plain single-column layout with real, selectable text, so both can read every line.",
       "You type on the left, the finished page updates on the right. When it looks right, save it as a PDF or download a Word copy to keep editing.",
@@ -55,13 +55,13 @@ export const TOOLS: Tool[] = [
   {
     slug: "cv-maker",
     name: "CV Maker",
-    short: "A longer curriculum vitae with projects, languages and references.",
+    short: "Create a professional CV online for free. Customize templates and download as PDF or Word.",
     category: "Resume and CV",
     kind: "cv",
-    title: "Free CV Maker, Curriculum Vitae Builder",
+    title: "Free Online CV Maker",
     description:
       "Create a professional CV online with sections for projects, certifications, languages and references. Live preview, PDF and Word download, no sign-up.",
-    keywords: ["cv maker", "curriculum vitae builder", "free cv maker", "cv template", "make a cv online"],
+    keywords: ["cv maker", "online cv maker", "free cv maker", "free online cv maker", "make a cv online"],
     intro: [
       "A CV has more room than a resume. It is the right document for jobs outside North America, graduate study, research roles and any application that asks for your full history rather than a one-page pitch.",
       "This builder adds the sections those applications expect: projects and publications, certifications, languages, personal details and references. Choose a Modern layout with a colour header, skill tags and an optional photo, or the Classic layout if the employer uses screening software. Leave a section empty and it disappears from the page.",
@@ -88,10 +88,10 @@ export const TOOLS: Tool[] = [
     short: "Open and read a PDF in your browser, nothing uploaded.",
     category: "PDF",
     kind: "pdf-reader",
-    title: "Free Online PDF Reader, No Upload Needed",
+    title: "Free Online PDF Reader",
     description:
-      "Open and read PDF files in your browser. Job descriptions, offer letters and application forms open privately on your device. Nothing is uploaded.",
-    keywords: ["pdf reader", "online pdf viewer", "open pdf online", "read pdf in browser", "view pdf"],
+      "Open and read PDF files in your browser for free. Job descriptions, offer letters and application forms open privately on your device. No download needed.",
+    keywords: ["pdf reader", "online pdf viewer", "open pdf online", "read pdf in browser", "view pdf online", "pdf reader online no download"],
     intro: [
       "Job hunting means a lot of PDFs: job descriptions, offer letters, contracts, forms and your own resume. This reader opens them straight in the browser, which helps when you are on a borrowed laptop or a phone without a PDF app.",
       "The file is opened locally. It is never sent anywhere, so an offer letter or ID scan stays on your device.",
@@ -114,10 +114,10 @@ export const TOOLS: Tool[] = [
     short: "Turn typed or pasted text into a downloadable PDF.",
     category: "PDF",
     kind: "text-pdf",
-    title: "Free PDF Maker: Turn Text into a PDF",
+    title: "Free Online PDF Maker",
     description:
-      "Type or paste text and download it as a PDF. Good for cover letters, notes and references. Runs in your browser, no sign-up.",
-    keywords: ["pdf maker", "text to pdf", "create pdf online", "make a pdf", "cover letter pdf"],
+      "Type or paste text and download it as a PDF. Good for cover letters, notes and references. Runs in your browser, free, no sign-up, online.",
+    keywords: ["pdf maker", "text to pdf", "create pdf online", "make a pdf", "cover letter pdf", "free pdf maker online"],
     intro: [
       "Many job portals only accept PDF uploads, and a cover letter written in a notes app is not one. Paste your text here, give it a title if you like, and download a tidy A4 PDF in a few seconds.",
       "The PDF uses a standard font, so it opens the same everywhere. It supports English and other Latin-alphabet text. For Urdu, Arabic or other scripts, write the document in a word processor and export it from there.",
@@ -140,10 +140,10 @@ export const TOOLS: Tool[] = [
     short: "Combine photos or scans into one PDF, in the order you choose.",
     category: "PDF",
     kind: "image-pdf",
-    title: "Image to PDF Converter, JPG and PNG to PDF",
+    title: "Image to PDF Converter",
     description:
       "Combine JPG, PNG and WebP images into a single PDF. Reorder pages, then download. Ideal for scanned certificates and ID copies. Runs in your browser.",
-    keywords: ["image to pdf", "jpg to pdf", "png to pdf", "photos to pdf", "scan to pdf"],
+    keywords: ["image to pdf", "jpg to pdf", "png to pdf", "pdf convertor", "webd to pdf"],
     intro: [
       "Applications often ask for certificates, ID copies or transcripts as one PDF, while all you have is a few phone photos. Add the images here, put them in order and download a single file.",
       "Each image gets its own page, scaled to fit A4 without stretching. Wide images are placed on a landscape page automatically.",
@@ -166,10 +166,10 @@ export const TOOLS: Tool[] = [
     short: "Switch images between JPG, PNG and WebP in one go.",
     category: "Images",
     kind: "convert",
-    title: "Image Converter: JPG, PNG and WebP, Free",
+    title: "Free Image Converter: JPG, PNG and WebP",
     description:
       "Convert images to JPG, PNG or WebP in your browser. Pick the format, convert several files at once, and keep your photos off the internet.",
-    keywords: ["image converter", "png to jpg", "jpg to png", "webp to png", "webp to jpg", "convert image format"],
+    keywords: ["image converter", "png to jpg", "jpg to png", "webp to png", "webp to jpg", "convert image format", "image extention convertor", "free image convertor"],
     intro: [
       "Application forms are picky. One wants a JPG under 2 MB, another only takes PNG, and the logo you saved from a website turned out to be WebP, which half the world's software still cannot open. Drop your images in, choose the format you need and download the result.",
       "Going to JPG fills any see-through areas with white, because JPG has no transparency. PNG and WebP keep transparency. Converting cannot bring back detail that was already lost, so keep your originals.",
@@ -196,10 +196,10 @@ export const TOOLS: Tool[] = [
     short: "Shrink photos to fit upload limits, with a size preview.",
     category: "Images",
     kind: "compress",
-    title: "Free Image Compressor, Reduce Photo Size",
+    title: "Free Online Image Compressor: Reduce Photo Size",
     description:
       "Compress JPG, PNG and WebP images to a smaller file size. Set quality and maximum width, see the saving at once. Private, runs in your browser.",
-    keywords: ["image compressor", "compress image", "reduce image size", "reduce photo size", "compress photo for upload"],
+    keywords: ["image compressor", "compress image", "reduce image size", "reduce photo size", "compress photo for upload", "free image compressor", "online image compressor", "free online image compressor"],
     intro: [
       "Upload forms love to say file too large. Phone photos are often 3 to 6 MB, while a job portal may only accept 1 or 2. This compressor makes the file smaller while keeping it good enough to read and look professional.",
       "Two things shrink an image: lower quality and fewer pixels. You can use both. A passport-style photo or a document scan rarely needs to be wider than 1600 pixels.",
@@ -226,10 +226,10 @@ export const TOOLS: Tool[] = [
     short: "Cut out a plain background, or swap it for white or any colour.",
     category: "Images",
     kind: "bg-remove",
-    title: "Free Background Remover for Photos and Logos",
+    title: "Free Online Background Remover: No SignUp Needed",
     description:
-      "Remove a plain background from a photo or logo and download a transparent PNG, or swap in white or any colour. Runs in your browser, nothing uploaded.",
-    keywords: ["background remover", "remove background from image", "transparent png", "change photo background", "passport photo background"],
+      "Remove the background from a photo or logo and download a transparent PNG, or swap in white or any colour. Runs in your browser for free, No SignUp.",
+    keywords: ["background remover", "remove background from image", "transparent png", "change photo background", "passport photo background", "online bg remover", "bg remover", "online free bg remover", "free bg remover", "free bg remover no watermark", "bg remover online", "online free background remover"],
     intro: [
       "Need a logo on a transparent background, or a profile photo on plain white? This tool finds the colour of the background and clears it, working inwards from the edges so colours inside your subject are left alone.",
       "It is built for plain backgrounds: product shots, logos, scanned signatures, photos taken against a wall. It does not recognise people or objects, so a busy street behind you will not come out cleanly.",

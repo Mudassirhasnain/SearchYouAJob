@@ -21,7 +21,7 @@ export default function SiteFooter() {
         ))}
       </div>
       <div className="border-t border-zinc-100 py-4 text-center text-xs text-zinc-500">
-        <Link href="/" className="hover:underline">Job Search</Link> · <Link href="/tools" className="hover:underline">Job Tools</Link> · <Link href="/about" className="hover:underline">About</Link>
+        <Link href="/" className="hover:underline">Job Search</Link> · <Link href="/tools" className="hover:underline">Job Tools</Link> · <Link href="/about" className="hover:underline">About</Link> · <Link href="/privacy-policy" className="hover:underline">Privacy Policy</Link>
         <p className="mt-1">© {new Date().getFullYear()} SearchYouAJob</p>
       </div>
     </footer>

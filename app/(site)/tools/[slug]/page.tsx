@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import JsonLd from "@/components/site/JsonLd";
 import ToolRunner from "@/components/tools/ToolRunner";
+import ToolGuide from "@/components/site/ToolGuide";
 import { TOOLS, getTool } from "@/lib/tools";
 
 const SITE = "https://searchyouajob.vercel.app";
@@ -94,13 +95,22 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
 
         <section className="mt-10">
           <h2 className="text-2xl font-semibold">More job tools</h2>
-          <ul className="mt-3 grid gap-x-6 gap-y-2 sm:grid-cols-2">
+          <ul className="mt-4 grid gap-3 sm:grid-cols-2">
             {others.map((o) => (
-              <li key={o.slug}><Link href={`/tools/${o.slug}`} className="text-[#2E5C8A] underline">{o.name}</Link></li>
+              <li key={o.slug}>
+                <Link href={`/tools/${o.slug}`} className="block h-full rounded-xl border border-zinc-200 bg-white p-4 transition hover:border-[#9CB9DC] hover:shadow-sm">
+                  <span className="font-medium text-[#2E5C8A]">{o.name}</span>
+                  <span className="mt-1 block text-sm leading-relaxed text-zinc-600">{o.short}</span>
+                  <span className="mt-3 block text-sm font-medium text-zinc-800">Explore tool →</span>
+                </Link>
+              </li>
             ))}
           </ul>
           <p className="mt-6 text-zinc-700">Done with the paperwork? <Link href="/" className="text-[#2E5C8A] underline">Search for jobs in plain English</Link>.</p>
         </section>
+      </div>
+      <div className="print:hidden">
+        <ToolGuide tool={t} />
       </div>
     </main>
   );

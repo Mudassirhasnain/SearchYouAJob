@@ -31,7 +31,7 @@ export const TOOLS: Tool[] = [
     title: "Free Online Resume Maker",
     description:
       "Build a clean, ATS-friendly resume in your browser. Fill in the form, check the live preview, then save it as a PDF or Word file. No sign-up.",
-    keywords: ["resume maker", "free resume builder", "ATS friendly resume", "resume template", "make a resume online", "online resume maker", "resume builder online", "free resume builder online"],
+    keywords: ["resume maker", "free resume builder", "ATS friendly resume", "resume template", "make a resume online", "online resume maker", "resume builder online"],
     intro: [
       "Plenty of good candidates lose out because their resume is hard to read, either for a recruiter skimming it in thirty seconds or for the software that sorts applications first. This resume maker uses a plain single-column layout with real, selectable text, so both can read every line.",
       "You type on the left, the finished page updates on the right. When it looks right, save it as a PDF or download a Word copy to keep editing.",

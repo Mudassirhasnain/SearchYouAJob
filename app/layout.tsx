@@ -62,7 +62,7 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary",
-    title: "SearchYouAJob — AI Job Search Assistant",
+    title: "SearchYourJob: AI Job Search in One Chat",
     description:
       "Find relevant jobs with an AI-powered conversational job search assistant.",
   },

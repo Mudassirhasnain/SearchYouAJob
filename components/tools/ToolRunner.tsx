@@ -5,6 +5,7 @@ import ImageToPdf from "./ImageToPdf";
 import PdfReader from "./PdfReader";
 import ResumeBuilder from "./ResumeBuilder";
 import TextToPdf from "./TextToPdf";
+import { REGISTRY } from "./registry";
 import type { Tool } from "@/lib/tools";
 
 export default function ToolRunner({ tool }: { tool: Tool }) {
@@ -17,5 +18,9 @@ export default function ToolRunner({ tool }: { tool: Tool }) {
     case "convert": return <ImageConverter mode="convert" />;
     case "compress": return <ImageConverter mode="compress" />;
     case "bg-remove": return <BgRemover />;
+    default: {
+      const Comp = REGISTRY[tool.kind];
+      return Comp ? <Comp /> : null;
+    }
   }
 }

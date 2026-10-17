@@ -3,10 +3,19 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import JsonLd from "@/components/site/JsonLd";
 import ToolRunner from "@/components/tools/ToolRunner";
-import ToolGuide from "@/components/site/ToolGuide";
-import { TOOLS, getTool } from "@/lib/tools";
+import { CATEGORIES, TOOLS, getTool } from "@/lib/tools";
+import { SITE_URL as SITE } from "@/lib/site";
 
-const SITE = "https://searchyouajob.vercel.app";
+const APP_CATEGORY: Record<string, string> = {
+  "Resume and CV": "BusinessApplication",
+  PDF: "BusinessApplication",
+  Images: "MultimediaApplication",
+  "Text and Writing": "UtilitiesApplication",
+  Calculators: "UtilitiesApplication",
+  Converters: "UtilitiesApplication",
+  "Developer and Security": "DeveloperApplication",
+  "Everyday Tools": "UtilitiesApplication",
+};
 
 export const dynamicParams = false;
 
@@ -32,17 +41,19 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const t = getTool(slug);
   if (!t) notFound();
-  const others = TOOLS.filter((x) => x.slug !== t.slug);
+  const related = (t.related ?? []).map((r) => getTool(r)).filter((x): x is NonNullable<typeof x> => !!x && x.slug !== t.slug);
+  const sameCat = TOOLS.filter((x) => x.category === t.category && x.slug !== t.slug && !related.some((r) => r.slug === x.slug)).slice(0, 4);
+  const suggestions = [...related, ...sameCat].slice(0, 6);
 
   return (
     <main className="mx-auto max-w-5xl px-4 py-8 print:max-w-none print:p-0">
       <JsonLd data={{
         "@context": "https://schema.org",
         "@graph": [
-          { "@type": "WebApplication", name: t.name, url: `${SITE}/tools/${t.slug}`, description: t.description, applicationCategory: "BusinessApplication", operatingSystem: "Any", offers: { "@type": "Offer", price: "0", priceCurrency: "USD" } },
+          { "@type": "WebApplication", name: t.name, url: `${SITE}/tools/${t.slug}`, description: t.description, applicationCategory: APP_CATEGORY[t.category] ?? "UtilitiesApplication", operatingSystem: "Any", offers: { "@type": "Offer", price: "0", priceCurrency: "USD" } },
           { "@type": "BreadcrumbList", itemListElement: [
             { "@type": "ListItem", position: 1, name: "Home", item: SITE + "/" },
-            { "@type": "ListItem", position: 2, name: "Job Tools", item: SITE + "/tools" },
+            { "@type": "ListItem", position: 2, name: "Free Tools", item: SITE + "/tools" },
             { "@type": "ListItem", position: 3, name: t.name, item: `${SITE}/tools/${t.slug}` } ] },
           { "@type": "FAQPage", mainEntity: t.faq.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) },
         ],
@@ -50,7 +61,7 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
 
       <div className="print:hidden">
         <nav aria-label="Breadcrumb" className="text-sm text-zinc-500">
-          <Link href="/" className="hover:underline">Home</Link> / <Link href="/tools" className="hover:underline">Job Tools</Link> / <span className="text-zinc-700">{t.name}</span>
+          <Link href="/" className="hover:underline">Home</Link> / <Link href="/tools" className="hover:underline">Free Tools</Link> / <span className="text-zinc-700">{t.name}</span>
         </nav>
         <h1 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">{t.name}</h1>
         <p className="mt-2 max-w-2xl text-lg text-zinc-600">{t.short}</p>
@@ -83,6 +94,22 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
           ))}
         </section>
 
+        {(t.sections ?? []).map((sec) => (
+          <section key={sec.h} className="mt-10">
+            <h2 className="text-2xl font-semibold">{sec.h}</h2>
+            {sec.paras.map((para, i) => <p key={i} className="mt-3 text-zinc-700 leading-relaxed">{para}</p>)}
+          </section>
+        ))}
+
+        {t.tips && t.tips.length > 0 && (
+          <section className="mt-10">
+            <h2 className="text-2xl font-semibold">Tips for better results</h2>
+            <ul className="mt-3 list-disc space-y-2 pl-5 text-zinc-700">
+              {t.tips.map((tip) => <li key={tip}>{tip}</li>)}
+            </ul>
+          </section>
+        )}
+
         <section className="mt-10">
           <h2 className="text-2xl font-semibold">Questions people ask</h2>
           {t.faq.map((f) => (
@@ -94,23 +121,36 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
         </section>
 
         <section className="mt-10">
-          <h2 className="text-2xl font-semibold">More job tools</h2>
-          <ul className="mt-4 grid gap-3 sm:grid-cols-2">
-            {others.map((o) => (
+          <h2 className="text-2xl font-semibold">You might also need</h2>
+          <ul className="mt-3 grid gap-3 sm:grid-cols-2">
+            {suggestions.map((o) => (
               <li key={o.slug}>
-                <Link href={`/tools/${o.slug}`} className="block h-full rounded-xl border border-zinc-200 bg-white p-4 transition hover:border-[#9CB9DC] hover:shadow-sm">
+                <Link href={`/tools/${o.slug}`} className="block h-full rounded-xl border border-zinc-200 bg-white p-4 hover:border-[#69ABF7]">
                   <span className="font-medium text-[#2E5C8A]">{o.name}</span>
-                  <span className="mt-1 block text-sm leading-relaxed text-zinc-600">{o.short}</span>
-                  <span className="mt-3 block text-sm font-medium text-zinc-800">Explore tool →</span>
+                  <span className="mt-1 block text-sm text-zinc-600">{o.short}</span>
                 </Link>
               </li>
             ))}
           </ul>
-          <p className="mt-6 text-zinc-700">Done with the paperwork? <Link href="/" className="text-[#2E5C8A] underline">Search for jobs in plain English</Link>.</p>
         </section>
-      </div>
-      <div className="print:hidden">
-        <ToolGuide tool={t} />
+
+        <section className="mt-10">
+          <h2 className="text-2xl font-semibold">Browse all free tools</h2>
+          {CATEGORIES.map((c) => (
+            <div key={c} className="mt-4">
+              <h3 className="text-sm font-semibold uppercase tracking-wide text-zinc-500">{c}</h3>
+              <p className="mt-1 text-zinc-700">
+                {TOOLS.filter((x) => x.category === c).map((x, i, a) => (
+                  <span key={x.slug}>
+                    {x.slug === t.slug ? <span className="text-zinc-500">{x.name}</span> : <Link href={`/tools/${x.slug}`} className="text-[#2E5C8A] underline">{x.name}</Link>}
+                    {i < a.length - 1 ? ", " : ""}
+                  </span>
+                ))}
+              </p>
+            </div>
+          ))}
+          <p className="mt-6 text-zinc-700">Done with the paperwork? <Link href="/" className="text-[#2E5C8A] underline">Search for jobs in plain English</Link>, or <Link href="/contact" className="text-[#2E5C8A] underline">suggest a tool you want us to build</Link>.</p>
+        </section>
       </div>
     </main>
   );

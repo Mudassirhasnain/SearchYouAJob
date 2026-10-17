@@ -1,27 +1,17 @@
-export type ToolKind = "resume" | "cv" | "pdf-reader" | "text-pdf" | "image-pdf" | "convert" | "compress" | "bg-remove";
+import type { Tool } from "./tool-types";
+import { privacy, free } from "./tool-types";
+import { EXTENSIONS } from "./tools-data/extensions";
+import { TEXT_TOOLS } from "./tools-data/text";
+import { IMAGE_TOOLS } from "./tools-data/images";
+import { CALC_TOOLS } from "./tools-data/calc";
+import { CONVERT_TOOLS } from "./tools-data/convert";
+import { DEV_TOOLS } from "./tools-data/dev";
+import { EVERYDAY_TOOLS } from "./tools-data/everyday";
 
-export type Tool = {
-  slug: string;
-  name: string;
-  short: string;
-  category: "Resume and CV" | "PDF" | "Images";
-  kind: ToolKind;
-  title: string;
-  description: string;
-  keywords: string[];
-  intro: string[];
-  steps: string[];
-  points: { h: string; p: string }[];
-  faq: { q: string; a: string }[];
-};
+export type { Tool, ToolKind } from "./tool-types";
+export { CATEGORIES } from "./tool-types";
 
-const privacy = {
-  h: "Your files stay on your device",
-  p: "The work happens inside your browser. Nothing is uploaded to our servers, so private documents stay private.",
-};
-const free = { q: "Is it free?", a: "Yes. No account, no watermark, no limit on how many times you use it." };
-
-export const TOOLS: Tool[] = [
+const BASE_TOOLS: Tool[] = [
   {
     slug: "resume-maker",
     name: "Resume Maker",
@@ -31,7 +21,7 @@ export const TOOLS: Tool[] = [
     title: "Free Online Resume Maker",
     description:
       "Build a clean, ATS-friendly resume in your browser. Fill in the form, check the live preview, then save it as a PDF or Word file. No sign-up.",
-    keywords: ["resume maker", "free resume builder online", "ATS friendly resume", "resume template", "make a resume online", "online resume maker", "resume builder online", "free resume builder online"],
+    keywords: ["resume maker", "free resume builder", "ATS friendly resume", "resume template", "make a resume online", "online resume maker", "resume builder online", "free resume builder online"],
     intro: [
       "Plenty of good candidates lose out because their resume is hard to read, either for a recruiter skimming it in thirty seconds or for the software that sorts applications first. This resume maker uses a plain single-column layout with real, selectable text, so both can read every line.",
       "You type on the left, the finished page updates on the right. When it looks right, save it as a PDF or download a Word copy to keep editing.",
@@ -252,5 +242,17 @@ export const TOOLS: Tool[] = [
   },
 ];
 
+// Original eight tools get extra long-form sections, tips and related links from extensions.ts.
+const BASE = BASE_TOOLS.map((t) => ({ ...t, ...(EXTENSIONS[t.slug] ?? {}) }));
+
+export const TOOLS: Tool[] = [
+  ...BASE,
+  ...TEXT_TOOLS,
+  ...IMAGE_TOOLS,
+  ...CALC_TOOLS,
+  ...CONVERT_TOOLS,
+  ...DEV_TOOLS,
+  ...EVERYDAY_TOOLS,
+];
+
 export const getTool = (slug: string) => TOOLS.find((t) => t.slug === slug);
-export const CATEGORIES: Tool["category"][] = ["Resume and CV", "PDF", "Images"];

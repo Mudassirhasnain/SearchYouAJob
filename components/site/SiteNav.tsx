@@ -5,8 +5,9 @@ import { usePathname } from "next/navigation";
 
 const links = [
   { href: "/", label: "Job Search" },
-  { href: "/tools", label: "Job Tools" },
+  { href: "/tools", label: "Free Tools" },
   { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export default function SiteNav() {

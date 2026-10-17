@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     "SearchYouAJob is an AI-powered job search assistant that helps you find relevant jobs through conversational search.",
 
   icons: {
-  icon: "/icon.png",
+  icon: "/searchYouAJobIcon.png",
   },
 
   keywords: [
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary",
-    title: "SearchYourJob: AI Job Search in One Chat",
+    title: "SearchYouAJob — AI Job Search Assistant",
     description:
       "Find relevant jobs with an AI-powered conversational job search assistant.",
   },

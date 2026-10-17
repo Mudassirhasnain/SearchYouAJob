@@ -1,35 +1,39 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import JsonLd from "@/components/site/JsonLd";
-
-const SITE = "https://searchyouajob.vercel.app";
+import { CATEGORIES, TOOLS } from "@/lib/tools";
+import { SITE_URL as SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "About SearchYouAJob: Find Jobs in Plain English",
+  title: "About SearchYouAJob: AI Job Search and Free Online Tools",
   description:
-    "SearchYouAJob helps you search for jobs in the market by describing the work you want. Real listings, remote options and free job tools in one place.",
-  keywords: ["about searchyouajob", "how to search for jobs", "ai job search", "find jobs online", "remote job search"],
+    "Meet SearchYouAJob: search real jobs by describing the work you want, then use free private tools for resumes, PDFs, images, calculators and more.",
+  keywords: ["about searchyouajob", "ai job search", "how to search for jobs", "free online tools", "remote job search", "private online tools", "no sign up tools"],
   alternates: { canonical: "/about" },
   openGraph: {
-    title: "About SearchYouAJob",
-    description: "Search for jobs by describing what you want, then use free tools to get your paperwork ready.",
+    title: "About SearchYouAJob: Job Search and Free Tools in One Place",
+    description: "Search for jobs by describing what you want, then get your paperwork and everyday tasks done with free tools that run in your browser.",
     url: `${SITE}/about`,
     siteName: "SearchYouAJob",
     type: "website",
   },
+  twitter: { card: "summary", title: "About SearchYouAJob", description: "AI job search plus free browser-based tools. No sign-up, no uploads." },
 };
 
 const faq = [
-  { q: "What is SearchYouAJob?", a: "A job search site where you type what you are looking for in everyday language and get matching listings back, along with free tools for resumes, PDFs and images." },
-  { q: "Where do the job listings come from?", a: "Listings are pulled from Adzuna, a large job search engine, so you see real openings with the company, location and pay when the employer lists it." },
+  { q: "What is SearchYouAJob?", a: "A job search site where you type what you are looking for in everyday language and get matching listings back, together with a growing set of free tools for resumes, PDFs, images, text, calculations and conversions." },
+  { q: "Where do the job listings come from?", a: "Listings are pulled from Adzuna, a large job search engine, so you see real openings with the company, location and pay when the employer lists it. We do not write or edit the listings." },
   { q: "Can I look for remote jobs?", a: "Yes. Say you want remote work in your message and the search takes that into account." },
   { q: "Do I need an account?", a: "No. You can search and use every tool without signing up. Log in only if you want your searches saved." },
-  { q: "Are the job tools free?", a: "Yes, and they run in your browser, so your documents are not uploaded." },
+  { q: "Are the tools really free, and what is the catch?", a: "They are free to use, with no watermark and no usage limit. The site is supported by being useful and by ordinary traffic. We do not sell your files because we never receive them." },
+  { q: "Are my files uploaded when I use a tool?", a: "No. The tools run in your browser. Files and text you enter are processed on your device. The privacy policy lists the few places where data does leave your device, such as the job search chat." },
+  { q: "How can I suggest a new tool or report a problem?", a: "Use the contact page. Tell us the tool name, your browser and what went wrong, or describe the tool you wish existed." },
 ];
 
 const h2 = "mt-12 text-2xl font-semibold";
 const h3 = "mt-5 font-medium text-zinc-900";
 const p = "mt-2 text-zinc-700 leading-relaxed";
+const a = "text-[#2E5C8A] underline";
 
 export default function AboutPage() {
   return (
@@ -37,7 +41,7 @@ export default function AboutPage() {
       <JsonLd data={{
         "@context": "https://schema.org",
         "@graph": [
-          { "@type": "AboutPage", name: "About SearchYouAJob", url: `${SITE}/about`, description: "SearchYouAJob helps people search for jobs in the market by describing the work they want." },
+          { "@type": "AboutPage", name: "About SearchYouAJob", url: `${SITE}/about`, description: "SearchYouAJob helps people search for jobs by describing the work they want, and offers free browser-based tools." },
           { "@type": "BreadcrumbList", itemListElement: [
             { "@type": "ListItem", position: 1, name: "Home", item: SITE + "/" },
             { "@type": "ListItem", position: 2, name: "About", item: `${SITE}/about` } ] },
@@ -47,8 +51,13 @@ export default function AboutPage() {
 
       <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">About SearchYouAJob</h1>
       <p className="mt-4 text-lg text-zinc-600">
-        SearchYouAJob helps you search for jobs in the market without fighting a wall of filters. Say what you want, in your own words, and we go and find it.
+        SearchYouAJob helps you search for jobs without fighting a wall of filters, and gives you {TOOLS.length} free tools to deal with the paperwork and small tasks that come with every application. Say what you want, in your own words, and we go and find it.
       </p>
+
+      <h2 className={h2}>Why we built it</h2>
+      <p className={p}>Job hunting is a pile of small chores wrapped around one big question. The big question is which job to go for. The chores are everything else: a resume that survives screening software, a certificate scan that fits a 2 MB upload limit, an offer letter you need to read on a borrowed laptop, a salary or loan calculation, a photo with the wrong dimensions.</p>
+      <p className={p}>Each chore usually sends you to a different website. Many of them ask for an email address, stamp a watermark on the result or upload your private documents to a server you know nothing about. We wanted one place where the search and the chores sit side by side, where nothing needs an account, and where the tools respect the fact that your documents are yours.</p>
+      <p className={p}>That is the whole idea. Search in plain English, then finish the task in the same tab.</p>
 
       <h2 className={h2}>What SearchYouAJob does</h2>
       <p className={p}>Most job sites start with a form: job title, location, salary range, date posted. If your idea is a bit fuzzy, the form gets in the way. Here you simply write something like “remote junior data analyst roles” and the search works out the role, the place and whether you want remote work.</p>
@@ -56,41 +65,50 @@ export default function AboutPage() {
 
       <h2 className={h2}>How a job search works</h2>
       <h3 className={h3}>You describe the job</h3>
-      <p className={p}>Type the role, the city or country, and anything else that matters, such as remote, part-time or entry level.</p>
+      <p className={p}>Type the role, the city or country, and anything else that matters, such as remote, part-time or entry level. Typos and nicknames are fine. “Silicon Valley” and “los angles” both get understood.</p>
       <h3 className={h3}>We turn it into a proper search</h3>
-      <p className={p}>Your message is read and converted into search terms, a place and a country, then checked against live listings.</p>
+      <p className={p}>Your message is read by an AI model and converted into search terms, a place and a country, then checked against live listings from Adzuna.</p>
       <h3 className={h3}>You get a short, useful list</h3>
-      <p className={p}>Instead of pages of near-duplicates, you see a handful of matches and can ask follow-up questions in the same chat.</p>
+      <p className={p}>Instead of pages of near-duplicates, you see a handful of matches and can ask follow-up questions in the same chat. Each result links to the original listing, where you apply with the employer directly.</p>
 
-      <h2 className={h2}>How we are better than a typical job board</h2>
-      <h3 className={h3}>You talk, you do not tick boxes</h3>
-      <p className={p}>Describing a job takes ten seconds. Setting up six filters takes longer, and still misses the point if the right title is worded differently.</p>
-      <h3 className={h3}>Straight answers about each result</h3>
-      <p className={p}>Every result shows who is hiring, where, and what it pays when that is known. When pay is not listed, we say so instead of guessing.</p>
-      <h3 className={h3}>Your paperwork gets sorted in the same place</h3>
-      <p className={p}>Job boards stop at the listing. We also give you a resume maker, a CV maker and PDF and image tools, so you are not hunting for a converter at midnight before a deadline.</p>
-      <h3 className={h3}>No account wall</h3>
-      <p className={p}>Search and use the tools straight away. You can also choose to create an account, but searching does not require sign-up.</p>
-      <h3 className={h3}>Private by design</h3>
-      <p className={p}>The document tools work inside your browser. Your resume, ID scans and offer letters are not uploaded to us.</p>
+      <h2 className={h2}>The free tools</h2>
+      <p className={p}>The <Link href="/tools" className={a}>tools section</Link> now holds {TOOLS.length} utilities. Each one does a single job, opens instantly and runs inside your browser. Here is what is available.</p>
+      {CATEGORIES.map((c) => (
+        <div key={c}>
+          <h3 className={h3}>{c}</h3>
+          <p className={p}>
+            {TOOLS.filter((t) => t.category === c).map((t, i, arr) => (
+              <span key={t.slug}><Link href={`/tools/${t.slug}`} className={a}>{t.name}</Link>{i < arr.length - 1 ? ", " : "."}</span>
+            ))}
+          </p>
+        </div>
+      ))}
 
-      <h2 className={h2}>Job tools that run in your browser</h2>
-      <p className={p}>Applications come with small, annoying requirements. These <Link href="/tools" className="text-[#2E5C8A] underline">free job tools</Link> cover the usual ones:</p>
-      <ul className="mt-3 list-disc space-y-1 pl-5 text-zinc-700">
-        <li><Link href="/tools/resume-maker" className="text-[#2E5C8A] underline">Resume Maker</Link> and <Link href="/tools/cv-maker" className="text-[#2E5C8A] underline">CV Maker</Link> for a clean, readable document</li>
-        <li><Link href="/tools/pdf-reader" className="text-[#2E5C8A] underline">PDF Reader</Link> and <Link href="/tools/pdf-maker" className="text-[#2E5C8A] underline">PDF Maker</Link> for offer letters and cover letters</li>
-        <li><Link href="/tools/image-to-pdf" className="text-[#2E5C8A] underline">Image to PDF</Link> for scanned certificates and ID copies</li>
-        <li><Link href="/tools/image-converter" className="text-[#2E5C8A] underline">Image Converter</Link>, <Link href="/tools/image-compressor" className="text-[#2E5C8A] underline">Image Compressor</Link> and <Link href="/tools/background-remover" className="text-[#2E5C8A] underline">Background Remover</Link> for upload forms that are picky about photos</li>
-      </ul>
+      <h2 className={h2}>How the tools are built</h2>
+      <p className={p}>Every tool is written to run on your device. When you convert an image, strip photo metadata, hash a file or make a PDF, the work is done by your browser using standard web features such as the Canvas API and the Web Crypto API. Because nothing needs a server, nothing needs an account, and there is no queue.</p>
+      <p className={p}>We try to keep the maths and the formats honest. The EMI calculator uses the standard reducing-balance formula. The time zone tools use the zone database built into your browser, so daylight saving is applied for the date you pick. The password generator uses the browser&apos;s cryptographic random source, not a predictable pseudo-random function. Each tool page explains how its result is produced and where its limits are, so you can decide how far to trust it.</p>
+      <p className={p}>No tool is a substitute for professional advice. A BMI figure is not a diagnosis, an invoice template is not legal or tax advice, and a loan calculator does not know your lender&apos;s fees. We say so on the pages where it matters.</p>
+
+      <h2 className={h2}>Principles we work to</h2>
+      <h3 className={h3}>Private by default</h3>
+      <p className={p}>The document, image, text and calculation tools do not send your input to us. The <Link href="/privacy" className={a}>privacy policy</Link> spells out the exceptions, such as the job search chat, which has to pass your message to an AI provider and a job search provider to work.</p>
+      <h3 className={h3}>No account wall, no watermark</h3>
+      <p className={p}>Search and use the tools straight away. Log in only if you want your searches kept for next time.</p>
+      <h3 className={h3}>Plain answers</h3>
+      <p className={p}>Every result shows who is hiring, where, and what it pays when that is known. When pay is not listed, we say so instead of guessing. The same goes for tools: if a tool cannot do something, the page says so.</p>
+      <h3 className={h3}>Fast and light</h3>
+      <p className={p}>Each tool loads only its own code, so pages stay quick on slow connections and older phones.</p>
 
       <h2 className={h2}>Who SearchYouAJob is for</h2>
       <h3 className={h3}>First-time job seekers</h3>
-      <p className={p}>If you do not know the exact job title to search for, describing the work is an easier place to start.</p>
+      <p className={p}>If you do not know the exact job title to search for, describing the work is an easier place to start. The resume maker and CV maker give you a clean document without a design degree.</p>
       <h3 className={h3}>People changing careers</h3>
       <p className={p}>Ask for roles that use the skills you already have and see what comes back.</p>
-      <h3 className={h3}>Remote and freelance hunters</h3>
-      <p className={p}>Say remote, part-time or contract in your message and the search follows.</p>
-      <h3 className={h3}>Anyone with an application due tonight</h3>
+      <h3 className={h3}>Remote and freelance workers</h3>
+      <p className={p}>Say remote, part-time or contract in your message and the search follows. The invoice generator, time zone converter and percentage calculator cover the admin that comes with working for clients.</p>
+      <h3 className={h3}>Students, developers and designers</h3>
+      <p className={p}>The JSON formatter, hash generator, colour contrast checker, Markdown previewer and unit converter are the small utilities people open ten times a week.</p>
+      <h3 className={h3}>Anyone with a deadline tonight</h3>
       <p className={p}>Make the resume, fix the file format and find the next opening without opening ten different sites.</p>
 
       <h2 className={h2}>Job search habits that work</h2>
@@ -100,6 +118,11 @@ export default function AboutPage() {
       <p className={p}>Newer listings tend to get more attention from recruiters, so check back often.</p>
       <h3 className={h3}>Keep every file as a PDF</h3>
       <p className={p}>A PDF looks the same on every screen, which is why most portals ask for one.</p>
+      <h3 className={h3}>Remove hidden data from photos</h3>
+      <p className={p}>Phone photos can carry your location. Run images through the <Link href="/tools/exif-remover" className={a}>photo metadata remover</Link> before posting them publicly.</p>
+
+      <h2 className={h2}>What comes next</h2>
+      <p className={p}>We add tools based on what people ask for. If a task keeps sending you to a site full of pop-ups, tell us about it through the <Link href="/contact" className={a}>contact page</Link>. We also fix bugs as they are reported and keep the existing tools accurate as browsers change. We do not promise dates for new features, but we do read every message.</p>
 
       <h2 className={h2}>Frequently asked questions</h2>
       <div className="mt-3">
@@ -111,39 +134,8 @@ export default function AboutPage() {
         ))}
       </div>
 
-      <h2 className={h2}>Making sense of search results</h2>
-      <p className={p}>A search result is a starting point, not a final recommendation. Read the complete vacancy, confirm the employer's identity, and check the date, location, work arrangement and application method. Job aggregators may display information supplied by external sources, and a listing can change or close after it first appears. If the application link redirects to another website, make sure the destination looks legitimate before sharing personal information.</p>
-      <p className={p}>Try changing one part of your request when the first results are too broad. Add a city, a seniority level, a specific skill or the kind of schedule you can work. If there are too few matches, broaden your wording: related roles may use different job titles even when the day-to-day work overlaps. For example, people exploring data work may compare analyst, reporting, business intelligence and junior data roles rather than searching one exact phrase only.</p>
-      <p className={p}>It is also worth keeping expectations realistic. Search results are influenced by the information available from listing sources and by how a request is interpreted. A missing salary does not mean a job is unpaid, and a displayed salary range should be checked against the employer's original description. SearchYouAJob does not guarantee that a role is still available, that every suitable vacancy will appear, or that an employer will contact you.</p>
-
-      <h2 className={h2}>Using AI suggestions responsibly</h2>
-      <p className={p}>AI can help turn an informal request into search terms and can make results easier to discuss, but it can misunderstand an unusual title, ambiguous location or a preference expressed indirectly. Be specific when something matters. State whether you need fully remote work or would accept hybrid work, whether you are looking for an internship or a permanent role, and which locations you can realistically work in. Review the results rather than treating an AI-generated explanation as proof that a vacancy is right for you.</p>
-      <p className={p}>Use your own judgment for important decisions. Never pay an unfamiliar recruiter to secure an interview, and be cautious when a supposed employer asks for sensitive identity or banking information before a legitimate hiring process requires it. Verify companies using official websites and trusted contact details. The service is a discovery and preparation aid, not a background-check provider or a substitute for direct communication with an employer.</p>
-
-      <h2 className={h2}>Accessibility, devices and practical use</h2>
-      <p className={p}>You can use the public job tools without creating an account. The pages are designed to work in modern browsers on desktop and mobile devices, although a particular browser may handle a large file or an embedded PDF differently. If a preview does not display correctly, try opening the output in a new tab or using a different up-to-date browser. Keep your browser updated and download important work before closing the page.</p>
-      <p className={p}>When preparing an application on a shared computer, protect your privacy. Do not save passwords in a public browser, sign out when finished, and remove downloaded copies if they should not remain on that device. On your own device, keep a private folder for your master resume, tailored versions, certificates and cover letters. Use descriptive filenames so you can quickly identify the version that matches a particular role.</p>
-
-      <h2 className={h2}>What SearchYouAJob does not promise</h2>
-      <p className={p}>SearchYouAJob does not guarantee employment, interviews, a particular salary or the completeness of third-party job listings. It does not replace the employer's application process, and its tools cannot guarantee that a document will pass every applicant tracking system or satisfy every portal. A clean layout and careful wording can help a document communicate clearly, but hiring decisions remain with employers.</p>
-      <p className={p}>Features may change as the project develops. We aim to make the experience practical and straightforward, but users should check important information at its source and keep their own copies of important documents. If you notice a broken link, an incorrect description or a usability issue, use a contact method published on the website if one is available.</p>
-
-      <h2 className={h2}>More ways to use the platform</h2>
-      <p className={p}>The <Link href="/tools" className="text-[#2E5C8A] underline">Job Tools directory</Link> groups utilities by task so you can choose the right one without browsing every page. Use the <Link href="/tools/resume-maker" className="text-[#2E5C8A] underline">Resume Maker</Link> for a concise resume, the <Link href="/tools/cv-maker" className="text-[#2E5C8A] underline">CV Maker</Link> when a fuller history is appropriate, or the <Link href="/tools/pdf-maker" className="text-[#2E5C8A] underline">PDF Maker</Link> to prepare plain text as a PDF. If you have scanned pages, the <Link href="/tools/image-to-pdf" className="text-[#2E5C8A] underline">Image to PDF tool</Link> can combine them into one document.</p>
-      <p className={p}>You can also review the <Link href="/privacy-policy" className="text-[#2E5C8A] underline">Privacy Policy</Link> to understand how website features, third-party integrations and analytics are handled. Reading the policy is particularly important before entering personal information into any online service.</p>
-
-      <h2 className={h2}>Frequently asked questions about job searching</h2>
-      <h3 className={h3}>How should I describe the job I want?</h3>
-      <p className={p}>Start with a role or skill, then add the location, experience level and work arrangement. A specific request such as “entry-level Python developer in Berlin” gives the search more context than “technology job.”</p>
-      <h3 className={h3}>What if I get irrelevant results?</h3>
-      <p className={p}>Try a more precise title, include a location, or specify the type of work you want. If you get too few results, broaden the wording or consider related roles. Check the original listing to confirm the details.</p>
-      <h3 className={h3}>Does SearchYouAJob apply on my behalf?</h3>
-      <p className={p}>No. It helps you discover listings and prepare files. You remain responsible for reviewing the vacancy, completing the employer's application and deciding what information to submit.</p>
-      <h3 className={h3}>Where can I read about data handling?</h3>
-      <p className={p}>Read the <Link href="/privacy-policy" className="text-[#2E5C8A] underline">Privacy Policy</Link> for details about the website's job-search processing, third-party services, analytics and account features.</p>
-
-      <h2 className={h2}>Start your search</h2>
-      <p className={p}>Ready? <Link href="/" className="text-[#2E5C8A] underline">Search for a job now</Link> or <Link href="/tools" className="text-[#2E5C8A] underline">open the job tools</Link>.</p>
+      <h2 className={h2}>Start now</h2>
+      <p className={p}>Ready? <Link href="/" className={a}>Search for a job</Link>, <Link href="/tools" className={a}>open the free tools</Link>, read the <Link href="/privacy" className={a}>privacy policy</Link> or <Link href="/contact" className={a}>get in touch</Link>.</p>
     </main>
   );
 }
